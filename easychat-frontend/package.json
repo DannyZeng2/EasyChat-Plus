@@ -12,6 +12,7 @@
     "element-ui": "^2.15.1",
     "socket.io-client": "^4.0.0",
     "vue": "^2.6.11",
+    "vue-router": "^3.5.1",
     "vue-socket.io": "^3.0.10"
   },
   "devDependencies": {

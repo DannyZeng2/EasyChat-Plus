@@ -4,13 +4,14 @@
  * @Author: Danny Zeng
  * @Date: 2021-03-15 21:28:58
  * @LastEditors: Danny Zeng
- * @LastEditTime: 2021-03-16 00:05:02
+ * @LastEditTime: 2021-03-16 23:25:46
  */
 import Vue from 'vue'
 import App from './App.vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 import VueSocketIO from 'vue-socket.io';
+import router from './router'
 
 import SocketIO from 'socket.io-client'
 
@@ -25,5 +26,6 @@ Vue.use(new VueSocketIO({
 }))
 
 new Vue({
+  router,
   render: h => h(App),
 }).$mount('#app')

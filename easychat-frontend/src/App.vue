@@ -4,22 +4,18 @@
  * @Author: Danny Zeng
  * @Date: 2021-03-15 21:28:58
  * @LastEditors: Danny Zeng
- * @LastEditTime: 2021-03-15 21:31:56
+ * @LastEditTime: 2021-03-16 23:51:01
 -->
 <template>
   <div id="app">
-    <Chat msg="Welcome to Your Vue.js App" />
+    <router-view />
   </div>
 </template>
 
 <script>
-import Chat from './views/Chat.vue'
 
 export default {
-  name: 'App',
-  components: {
-    Chat
-  }
+  name: 'App'
 }
 </script>
 
