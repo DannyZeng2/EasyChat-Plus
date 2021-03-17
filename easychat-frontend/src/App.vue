@@ -4,7 +4,7 @@
  * @Author: Danny Zeng
  * @Date: 2021-03-15 21:28:58
  * @LastEditors: Danny Zeng
- * @LastEditTime: 2021-03-16 23:51:01
+ * @LastEditTime: 2021-03-18 00:10:42
 -->
 <template>
   <div id="app">
@@ -20,12 +20,4 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

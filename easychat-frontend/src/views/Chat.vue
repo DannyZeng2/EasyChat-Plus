@@ -4,7 +4,7 @@
  * @Author: Danny Zeng
  * @Date: 2021-03-14 21:22:31
  * @LastEditors: Danny Zeng
- * @LastEditTime: 2021-03-16 20:32:17
+ * @LastEditTime: 2021-03-17 23:36:20
 -->
 <template>
   <div class="main">
@@ -69,6 +69,7 @@ export default {
   methods: {
     sendMsg() {
       this.$socket.emit('send_msg', this.input)
+      this.input = ''
     }
   }
 }
