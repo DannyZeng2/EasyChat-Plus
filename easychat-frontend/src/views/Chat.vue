@@ -20,35 +20,32 @@
           </el-menu>
         </el-aside>
         <el-aside>
-          <el-menu :default-active="activeIndex" class="main-menu" background-color="#D3D3D3">
-            <div id="user-list"></div>
+          <el-menu :default-active="activeIndex" class="main-menu" background-color="#e8e8e8">
+            <div id="user-list-title"></div>
+            <el-divider></el-divider>
             <el-menu-item index="1"></el-menu-item>
             <el-menu-item index="2"></el-menu-item>
             <el-menu-item index="3"></el-menu-item>
           </el-menu>
         </el-aside>
         <el-container>
-          <el-header id="chat-title" height="80px"></el-header>
-          <el-main id="chat-content"></el-main>
-          <el-footer id="input-field" height="350px"></el-footer>
+          <el-header id="chat-title" height="60px"></el-header>
+          <el-divider></el-divider>
+          <el-main id="chat-content"><div id="content"></div></el-main>
+          <el-footer id="tool-field" height="50px">
+            <i class="el-icon-picture-outline" ></i>
+            <i class="el-icon-video-camera"></i>
+            <i class="el-icon-folder-add"></i>
+          </el-footer>
+          <el-footer id="input-field" height="360px">
+            <el-input id='input' type="textarea" :rows="17"
+                      v-model="input"></el-input>
+          </el-footer>
+          <el-footer id="send-msg" height="50px"><el-button id="send-msg-btn" type="primary" @click="sendMsg" style="width: 8%">Send</el-button></el-footer>
           <div ></div>
           <div></div>
         </el-container>
       </el-container>
-
-
-
-<!--          <el-row>-->
-<!--            <el-col :span="16">-->
-<!--              <el-input id='input'-->
-<!--                        v-model="input"></el-input>-->
-<!--            </el-col>-->
-<!--            <el-col :span="8">-->
-<!--              <el-button type="primary"-->
-<!--                         @click="sendMsg">Send</el-button>-->
-<!--            </el-col>-->
-<!--          </el-row>-->
-<!--          <div id="content"></div>-->
     </div>
 
 
@@ -147,8 +144,8 @@ export default {
 }
 
 
-#user-list,#photo{
-  height: 80px;
+#user-list-title{
+  height: 60px;
 }
 #chat-title{
   background: #f6f6f6;
@@ -157,6 +154,25 @@ export default {
   width:100%;
   height: 500px;
   background: #f6f6f6;
+}
+
+.el-icon-s-comment,.el-icon-user-solid,.el-icon-s-tools{
+  font-size:200%
+}
+.el-icon-picture-outline,.el-icon-video-camera,.el-icon-folder-add{
+  font-size:220%;
+  margin: 10px;
+}
+
+#send-msg{
+  text-align: right;
+}
+
+.el-divider--horizontal {
+  display: block;
+  height: 1px;
+  width: 100%;
+  margin: 0;
 }
 
 </style>
