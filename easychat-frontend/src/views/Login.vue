@@ -4,35 +4,53 @@
  * @Author: Danny Zeng
  * @Date: 2021-03-16 23:29:33
  * @LastEditors: Danny Zeng
- * @LastEditTime: 2021-03-18 00:55:27
+ * @LastEditTime: 2021-03-18 21:17:11
 -->
 <template>
   <div id="main">
     <div id="login-container">
-      <el-form>
-        <el-form-item>
-          <span>EasyChat</span>
-        </el-form-item>
-        <el-form-item class="info">
-          <el-input type="text"
-                    prefix-icon="el-icon-user"
-                    v-model="username"
-                    placeholder="用户名"></el-input>
-        </el-form-item>
-        <el-form-item class="info"
-                      prop="password">
-          <el-input type="password"
-                    prefix-icon="el-icon-lock"
-                    v-model="password"
-                    placeholder="密码"></el-input>
-        </el-form-item>
-        <el-form-item class="info">
-          <el-button type="primary"
-                     style="width:100%;"
-                     @click="login"
-                     round>登录</el-button>
-        </el-form-item>
-      </el-form>
+
+
+      <span>Easychat</span>
+
+      <el-tabs type="border-card" v-model="activeName" style="width: 440px;height: 380px;margin-top: 20px" :stretch=true>
+
+        <el-tab-pane label="用户登录" name="login">
+          <el-form :model="loginForm" :rules="rules" ref="loginForm">
+            <el-form-item class="info" prop="username">
+              <el-input type="text" prefix-icon="el-icon-user" v-model="loginForm.username" placeholder="用户名"></el-input>
+            </el-form-item>
+            <el-form-item class="info" prop="password">
+              <el-input type="password" prefix-icon="el-icon-lock" v-model="loginForm.password" placeholder="密码"></el-input>
+            </el-form-item>
+            <el-form-item class="info">
+              <el-checkbox v-model="checked">记住我</el-checkbox>
+            </el-form-item>
+            <el-form-item class="info">
+              <el-button type="primary" style=" width:100%;" @click="login('loginForm')" round>登录</el-button>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+
+        <el-tab-pane label="用户注册" name="register">
+          <el-form :model="registerForm" :rules="rules" ref="registerForm">
+            <el-form-item class="info" prop="username">
+              <el-input type="text" prefix-icon="el-icon-user" v-model="registerForm.username" placeholder="用户名"></el-input>
+            </el-form-item>
+            <el-form-item class="info" prop="password">
+              <el-input type="password" prefix-icon="el-icon-lock" v-model="registerForm.password" placeholder="密码"></el-input>
+            </el-form-item>
+            <el-form-item class="info" prop="phone">
+              <el-input type="text" prefix-icon="el-icon-lock" v-model="registerForm.phone" placeholder="手机号"></el-input>
+            </el-form-item>
+            <el-form-item class="info">
+              <el-button type="primary" style=" width:100%;" @click="register('registerForm')" round>注册</el-button>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+
+      </el-tabs>
+
     </div>
   </div>
 
@@ -43,44 +61,75 @@ export default {
   name: 'Login',
   data() {
     return {
+      loginForm:{
+        username: '',
+        password: '',
+      },
+      registerForm:{
+        username: '',
+        password: '',
+        phone:''
+      },
       checked: true,
-      username: '',
-      password: ''
+      activeName: 'login',
+      rules: {
+        username: [
+          {required: true, message: '请输入用户名', trigger: 'blur'},
+        ],
+        password: [
+          {required: true, message: '请输入密码', trigger: 'blur'}
+        ],
+        phone: [
+          {required: true, message: '请输入手机号', trigger: 'blur'}
+        ],
+      }
     };
   },
   methods: {
-    login() {
-      if (this.username === '' || this.password === '') {
-        this.$alert("请输入账号和密码");
-        return
-      }
-      this.$router.push('/chat')
+    login(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            this.$router.push('/chat')
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+
+    },
+    register(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$router.push('/chat')
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+
     }
+
   }
 }
 </script>
 
 <style scoped>
 #main {
-  background: url("../assets/login.jpg") no-repeat;
-  background-position: center;
   height: 100%;
   width: 100%;
   background-size: cover;
   position: fixed;
+  background: lightgrey;
 }
 span {
-  font: 500 100px "Comic Sans MS";
-  color: white;
-  text-shadow: 0 0 20px #fdec84, 10px -10px 30px #ffae35,
-    20px -20px 40px #ec760c, -20px -60px 50px #cd4607, 0px -80px 60px #973717,
-    10px -40px 70px #451b0e;
+  margin-left: 35px;
+  font: 800 80px "Sans-serif	";
+  color: #4080ff;
 }
 
 #login-container {
   margin: auto;
   width: 400px;
-  padding: 80px;
   position: absolute;
   left: 50%;
   top: 40%;
@@ -90,6 +139,7 @@ span {
   width: 350px;
   left: 50%;
   margin-left: 30px;
+  margin-top: 30px;
 }
 #logo {
   width: 200px;
