@@ -11,7 +11,7 @@
     <div id="login-container">
 
 
-      <span>Easychat</span>
+        <span>Easychat<sup>&#174;</sup></span>
 
       <el-tabs type="border-card" v-model="activeName" style="width: 440px;height: 380px;margin-top: 20px" :stretch=true>
 
@@ -41,7 +41,7 @@
               <el-input type="password" prefix-icon="el-icon-lock" v-model="registerForm.password" placeholder="密码"></el-input>
             </el-form-item>
             <el-form-item class="info" prop="phone">
-              <el-input type="text" prefix-icon="el-icon-lock" v-model="registerForm.phone" placeholder="手机号"></el-input>
+              <el-input type="text" prefix-icon="el-icon-mobile-phone" v-model="registerForm.phone" placeholder="手机号"></el-input>
             </el-form-item>
             <el-form-item class="info">
               <el-button type="primary" style=" width:100%;" @click="register('registerForm')" round>注册</el-button>
@@ -115,16 +115,17 @@ export default {
 
 <style scoped>
 #main {
+  background: url("../assets/background.jpeg") no-repeat;
+  background-position: center;
   height: 100%;
   width: 100%;
   background-size: cover;
   position: fixed;
-  background: lightgrey;
 }
 span {
   margin-left: 35px;
   font: 800 80px "Sans-serif	";
-  color: #4080ff;
+  color: white;
 }
 
 #login-container {
