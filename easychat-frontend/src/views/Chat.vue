@@ -38,8 +38,7 @@
             <i class="el-icon-folder-add"></i>
           </el-footer>
           <el-footer id="input-field" height="360px">
-            <el-input id='input' type="textarea" :rows="17"
-                      v-model="input"></el-input>
+            <textarea id='input' style="width: 95%;height: 100% " v-model="input"></textarea>
           </el-footer>
           <el-footer id="send-msg" height="50px"><el-button id="send-msg-btn" type="primary" @click="sendMsg" style="width: 8%">Send</el-button></el-footer>
           <div ></div>
@@ -47,10 +46,6 @@
         </el-container>
       </el-container>
     </div>
-
-
-
-
   </div>
 </template>
 <script>
@@ -113,7 +108,7 @@ export default {
 #main {
   width: 100%;
   height: 100%;
-  background: url("../assets/chat.jpeg") no-repeat;
+  background: url("../assets/chat-bg2.jpg") no-repeat;
   background-position: center;
   background-size: cover;
   position: fixed;
@@ -174,5 +169,17 @@ export default {
   width: 100%;
   margin: 0;
 }
+
+textarea{
+  margin-left: 20px;
+  margin-top: 20px;
+  border: none;
+  resize: none;
+  cursor: pointer;
+  outline:none;
+  font-size:30px
+}
+
+
 
 </style>

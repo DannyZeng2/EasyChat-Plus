@@ -100,7 +100,13 @@ export default {
     register(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$router.push('/chat')
+          this.axios.post('api/register').then((response)=>{
+            if(response.data.data === ''){
+              this.$alert('注册成功')
+            }
+          }).catch((response)=>{
+            console.log(response);
+          })
         } else {
           console.log('error submit!!');
           return false;
