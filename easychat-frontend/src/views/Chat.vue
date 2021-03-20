@@ -8,6 +8,7 @@
 -->
 <template>
   <div id="main">
+    <span id="user-info">当前用户: {{ this.$route.params.username }}</span>
     <el-container id="main-content">
       <el-aside style="width: 80px;">
         <el-menu :default-active="activeIndex" class="left-menu" @select="handleSelect" background-color="#1d3e6d">
@@ -22,7 +23,7 @@
 
       <el-aside>
         <el-menu id="user-list" :default-active="1" class="main-menu" background-color="#e8e8e8">
-          <div id="user-list-title"></div>
+          <div id="user-list-title">用户列表</div>
           <el-divider></el-divider>
           <el-menu-item index="1">
             <el-avatar shape="square" :size="50" :src="require('../assets/cat.jpeg')"></el-avatar>
@@ -40,7 +41,7 @@
       </el-aside>
 
       <el-container>
-        <el-header id="chat-title" height="60px"></el-header>
+        <el-header id="chat-title">群聊({{ this.count }})</el-header>
         <el-divider></el-divider>
         <el-main id="chat-content">
           <div id="content"></div>
@@ -61,8 +62,7 @@
   </div>
 </template>
 <script>
-const ENTER = 0
-const LEAVE = 1
+
 
 export default {
   name: 'Chat',
@@ -71,6 +71,7 @@ export default {
       input: '',
       content: '',
       message: '',
+      count:0,
       activeIndex: 1
     }
   },
@@ -91,24 +92,35 @@ export default {
       })
     },
 
+    user_enter(data) {
+      console.log(data)
+      let content = document.querySelector('#content');
+      let div = document.createElement('div');
+      div.innerText = data
+      content.appendChild(div)
+    },
+    user_leave(data){
+      console.log(data)
+      let content = document.querySelector('#content');
+      let div = document.createElement('div');
+      div.innerText = data
+      content.appendChild(div)
+    },
+    count_users(data) {
+      this.count = data
+    },
     broadcast_msg(data) {
-      var content = document.querySelector('#content')
-      var div = document.createElement('div')
+      console.log(data)
+      let content = document.querySelector('#content');
+      let div = document.createElement('div');
       div.innerText = `${data.msg} ---${data.time}`
-      if (data.type === ENTER) {
-        div.style.color = 'green'
-      } else if (data.type === LEAVE) {
-        div.style.color = 'red'
-      } else {
-        div.style.color = 'blue'
-      }
       content.appendChild(div)
     }
   },
 
   methods: {
     sendMsg() {
-      this.$socket.emit('send_msg', this.input)
+      this.$socket.emit('send_msg',this.$route.params.username + ':' + this.input)
       this.input = ''
     }
   }

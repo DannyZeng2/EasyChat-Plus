@@ -25,7 +25,7 @@ const router = new Router({
       component: Login,
     },
     {
-      path: '/chat',
+      path: '/chat/:username',
       name: 'Chat',
       component: Chat
     }

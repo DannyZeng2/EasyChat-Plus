@@ -80,6 +80,7 @@ export default {
       }
     };
   },
+
   methods: {
     clickTab(tab) {
       if (tab.name == 'login') {
@@ -112,11 +113,15 @@ export default {
 
     toChat() {
       let _this = this
-      let params = { username: this.loginForm.username, password: this.loginForm.password }
+      let username = _this.loginForm.username
+      let password = _this.loginForm.password
+
+      let params = { username: username, password: password }
       this.$axios.get('/api/login', { params: params })
         .then(function (res) {
           if (res.data.success) {
-            _this.$router.push('/chat')
+            _this.$router.push({path: `/chat/${username}`})
+            _this.$socket.emit('login', _this.loginForm.username)
           } else {
             _this.$message.error(res.data.message);
           }
