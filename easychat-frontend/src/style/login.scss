@@ -1,0 +1,43 @@
+#login-main {
+  background: url("../assets/background.jpeg") no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  position: fixed;
+}
+
+#logo-name {
+  margin-left: 25px;
+  font: 800 80px "Sans-serif	";
+  color: white;
+}
+
+#login-container {
+  margin: auto;
+  width: 400px;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+}
+.info {
+  width: 350px;
+  left: 50%;
+  margin-left: 30px;
+  margin-top: 30px;
+}
+#logo {
+  width: 200px;
+  padding-bottom: 15px;
+  margin: 0 500px 0 55px;
+}
+
+#name {
+  font-size: x-large;
+  color: #409eff;
+}
+#user {
+  font-size: x-large;
+  color: #409eff;
+}

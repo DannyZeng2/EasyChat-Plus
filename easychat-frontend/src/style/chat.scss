@@ -1,0 +1,87 @@
+#main {
+  width: 100%;
+  height: 100%;
+  background: url("../assets/chat-bg2.jpg") no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: fixed;
+}
+
+#input {
+  width: 10px;
+}
+#content {
+  margin-top: 15px;
+  text-align: left;
+}
+
+#main-content {
+  background: white;
+  width: 60%;
+  height: 80%;
+  margin: auto;
+  margin-top: 5%;
+
+}
+
+.left-menu {
+  height:100%;
+}
+
+.main-menu{
+  height:100%;
+}
+
+#user-list-title{
+  height: 60px;
+}
+#chat-title{
+  background: #f6f6f6;
+}
+#chat-content{
+  width:100%;
+  height: 500px;
+  background: #f6f6f6;
+}
+
+.el-icon-picture-outline,.el-icon-video-camera,.el-icon-folder-add{
+  font-size:200%;
+  margin: 5px;
+}
+#send-msg{
+  text-align: right;
+}
+
+
+.el-divider--horizontal {
+  display: block;
+  height: 1px;
+  width: 100%;
+  margin: 0;
+}
+
+textarea{
+  margin-left: 20px;
+  margin-top: 20px;
+  border: none;
+  resize: none;
+  cursor: pointer;
+  outline:none;
+  font-size:20px
+}
+
+.el-menu-item {
+  font-size: 14px;
+  padding: 0 10px;
+  cursor: pointer;
+  height: 60px;
+  box-sizing: border-box;
+}
+
+.chat-member{
+  margin-left: 20px;
+  font-size: 18px;
+}
+#user-list .el-menu-item.is-active{
+  background-color:#bcbcbc !important;
+}

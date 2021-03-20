@@ -13,10 +13,12 @@ import 'element-ui/lib/theme-chalk/index.css';
 import VueSocketIO from 'vue-socket.io';
 import router from './router'
 import SocketIO from 'socket.io-client'
-import axios from 'axios'
+import Axios from 'axios'
 import VueAxios from 'vue-axios'
 
-Vue.use(VueAxios,axios);
+Vue.prototype.$axios = Axios;
+
+Vue.use(VueAxios,Axios);
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)

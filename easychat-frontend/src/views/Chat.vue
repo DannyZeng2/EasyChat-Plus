@@ -9,13 +9,14 @@
 <template>
   <div id="main">
 
+
       <el-container id="main-content">
         <el-aside style="width: 80px;">
           <el-menu :default-active="activeIndex" class="left-menu"  @select="handleSelect" background-color="#1d3e6d">
-            <div id="photo"><el-avatar :size="60" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" style="margin: 10px"></el-avatar></div>
-            <el-menu-item index="1"> <i class="el-icon-s-comment" style="width: 40px"></i></el-menu-item>
-            <el-menu-item index="2"> <i class="el-icon-user-solid" style="width: 40px"></i></el-menu-item>
-            <el-menu-item index="3"> <i class="el-icon-s-tools" style="width: 40px"></i></el-menu-item>
+            <div id="photo"><el-avatar :size="60" :src="require('../assets/dog.jpeg')" style="margin: 10px"></el-avatar></div>
+            <el-menu-item index="1"> <i class="el-icon-s-comment"></i></el-menu-item>
+            <el-menu-item index="2"> <i class="el-icon-user-solid"></i></el-menu-item>
+            <el-menu-item index="3"> <i class="el-icon-s-tools"></i></el-menu-item>
           </el-menu>
         </el-aside>
 
@@ -24,15 +25,15 @@
             <div id="user-list-title"></div>
             <el-divider></el-divider>
             <el-menu-item index="1">
-              <el-avatar shape="square" :size="50" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+              <el-avatar shape="square" :size="50" :src="require('../assets/cat.jpeg')"></el-avatar>
               <span class="chat-member">Danny Zeng</span>
             </el-menu-item>
             <el-menu-item index="2">
-              <el-avatar shape="square" :size="50" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+              <el-avatar shape="square" :size="50" :src="require('../assets/pig.jpeg')"></el-avatar>
               <span class="chat-member">Eric Chen</span>
             </el-menu-item>
             <el-menu-item index="3">
-              <el-avatar shape="square" :size="50" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+              <el-avatar shape="square" :size="50" :src="require('../assets/rabbit.jpeg')"></el-avatar>
               <span class="chat-member">Matthew Li</span>
             </el-menu-item>
           </el-menu>
@@ -114,96 +115,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-#main {
-  width: 100%;
-  height: 100%;
-  background: url("../assets/chat-bg2.jpg") no-repeat;
-  background-position: center;
-  background-size: cover;
-  position: fixed;
-}
-
-#input {
-  width: 10px;
-}
-#content {
-  margin-top: 15px;
-  text-align: left;
-}
-
-#main-content {
-  background: white;
-  width: 60%;
-  height: 80%;
-  margin: auto;
-  margin-top: 5%;
-
-}
-
-.left-menu {
-  height:100%;
-}
-
-.main-menu{
-  height:100%;
-}
-
-#user-list-title{
-  height: 60px;
-}
-#chat-title{
-  background: #f6f6f6;
-}
-#chat-content{
-  width:100%;
-  height: 500px;
-  background: #f6f6f6;
-}
+@import "../style/chat.scss";
 
 .el-icon-s-comment,.el-icon-user-solid,.el-icon-s-tools{
-  font-size:200%
-}
-.el-icon-picture-outline,.el-icon-video-camera,.el-icon-folder-add{
   font-size:200%;
-  margin: 5px;
-}
-
-#send-msg{
-  text-align: right;
-}
-
-.el-divider--horizontal {
-  display: block;
-  height: 1px;
-  width: 100%;
-  margin: 0;
-}
-
-textarea{
-  margin-left: 20px;
-  margin-top: 20px;
-  border: none;
-  resize: none;
-  cursor: pointer;
-  outline:none;
-  font-size:20px
-}
-
-.el-menu-item {
-  font-size: 14px;
-  padding: 0 10px;
-  cursor: pointer;
-  height: 60px;
-  box-sizing: border-box;
-}
-
-.chat-member{
-  margin-left: 20px;
-  font-size: 18px;
-}
-#user-list .el-menu-item.is-active{
-  background-color:#bcbcbc !important;
+  width: 40px
 }
 
 </style>

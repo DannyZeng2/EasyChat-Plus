@@ -7,11 +7,9 @@
  * @LastEditTime: 2021-03-18 21:17:11
 -->
 <template>
-  <div id="main">
+  <div id="login-main">
     <div id="login-container">
-
-
-        <span>Easychat<sup>&#174;</sup></span>
+      <span id="logo-name">Easychat<sup>&#174;</sup></span>
 
       <el-tabs type="border-card" v-model="activeName" style="width: 440px;height: 380px;margin-top: 20px" :stretch=true>
 
@@ -48,9 +46,7 @@
             </el-form-item>
           </el-form>
         </el-tab-pane>
-
       </el-tabs>
-
     </div>
   </div>
 
@@ -86,80 +82,66 @@ export default {
     };
   },
   methods: {
-    login(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            this.$router.push('/chat')
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
-
+    login (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+            this.toChat()
+        } else {
+          return false;
+        }
+      });
     },
+
+    toChat() {
+      let _this = this
+      let params = {username: this.loginForm.username, password: this.loginForm.password}
+      this.$axios.get('/api/login', {params:params})
+          .then(function (res) {
+            if(res.data.success){
+              _this.$router.push('/chat')
+            }else {
+              _this.$message.error(res.data.message);
+            }
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
+    },
+
+
     register(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.axios.post('api/register').then((response)=>{
-            if(response.data.data === ''){
-              this.$alert('注册成功')
-            }
-          }).catch((response)=>{
-            console.log(response);
-          })
+          this.registerUser()
         } else {
           console.log('error submit!!');
           return false;
         }
       });
 
-    }
+    },
+
+    registerUser() {
+      let _this = this
+      let params = {username: this.registerForm.username, password: this.registerForm.password, phone:this.registerForm.phone}
+      this.$axios.post('/api/register', null,{params:params})
+          .then(function (res) {
+            if(res.data.success){
+              _this.$message.success(res.data.message);
+            }else {
+              _this.$message.error(res.data.message);
+            }
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
+    },
+
 
   }
 }
 </script>
 
 <style scoped>
-#main {
-  background: url("../assets/background.jpeg") no-repeat;
-  background-position: center;
-  height: 100%;
-  width: 100%;
-  background-size: cover;
-  position: fixed;
-}
-span {
-  margin-left: 35px;
-  font: 800 80px "Sans-serif	";
-  color: white;
-}
-
-#login-container {
-  margin: auto;
-  width: 400px;
-  position: absolute;
-  left: 50%;
-  top: 40%;
-  transform: translate(-50%, -50%);
-}
-.info {
-  width: 350px;
-  left: 50%;
-  margin-left: 30px;
-  margin-top: 30px;
-}
-#logo {
-  width: 200px;
-  padding-bottom: 15px;
-  margin: 0 500px 0 55px;
-}
-
-#name {
-  font-size: x-large;
-  color: #409eff;
-}
-#user {
-  font-size: x-large;
-  color: #409eff;
-}
+@import "../style/login.scss";
 </style>
