@@ -4,7 +4,7 @@
  * @Author: Danny Zeng
  * @Date: 2021-03-15 21:28:58
  * @LastEditors: Danny Zeng
- * @LastEditTime: 2021-03-16 23:25:46
+ * @LastEditTime: 2021-03-20 22:14:48
  */
 import Vue from 'vue'
 import App from './App.vue'
@@ -18,7 +18,7 @@ import VueAxios from 'vue-axios'
 
 Vue.prototype.$axios = Axios;
 
-Vue.use(VueAxios,Axios);
+Vue.use(VueAxios, Axios);
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
