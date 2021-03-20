@@ -11,73 +11,37 @@
     <div id="login-container">
       <span id="logo-name">Easychat<sup>&#174;</sup></span>
 
-      <el-tabs type="border-card"
-               v-model="activeName"
-               style="width: 440px;height: 380px;margin-top: 20px"
-               :stretch=true
-               @tab-click="clickTab">
-        <el-tab-pane label="用户登录"
-                     name="login">
-          <el-form :model="loginForm"
-                   :rules="rules"
-                   ref="loginForm">
-            <el-form-item class="info"
-                          prop="username">
-              <el-input type="text"
-                        prefix-icon="el-icon-user"
-                        v-model="loginForm.username"
-                        placeholder="用户名"></el-input>
+      <el-tabs type="border-card" v-model="activeName" style="width: 440px;height: 380px;margin-top: 20px" :stretch=true @tab-click="clickTab">
+        <el-tab-pane label="用户登录" name="login">
+          <el-form :model="loginForm" :rules="rules" ref="loginForm">
+            <el-form-item class="info" prop="username">
+              <el-input type="text" prefix-icon="el-icon-user" v-model="loginForm.username" placeholder="用户名"></el-input>
             </el-form-item>
-            <el-form-item class="info"
-                          prop="password">
-              <el-input type="password"
-                        prefix-icon="el-icon-lock"
-                        v-model="loginForm.password"
-                        placeholder="密码"></el-input>
+            <el-form-item class="info" prop="password">
+              <el-input type="password" prefix-icon="el-icon-lock" v-model="loginForm.password" placeholder="密码"></el-input>
             </el-form-item>
             <el-form-item class="info">
               <el-checkbox v-model="checked">记住我</el-checkbox>
             </el-form-item>
             <el-form-item class="info">
-              <el-button type="primary"
-                         style=" width:100%;"
-                         @click="login('loginForm')"
-                         round>登录</el-button>
+              <el-button type="primary" style=" width:100%;" @click="login('loginForm')" round>登录</el-button>
             </el-form-item>
           </el-form>
         </el-tab-pane>
 
-        <el-tab-pane label="用户注册"
-                     name="register">
-          <el-form :model="registerForm"
-                   :rules="rules"
-                   ref="registerForm">
-            <el-form-item class="info"
-                          prop="username">
-              <el-input type="text"
-                        prefix-icon="el-icon-user"
-                        v-model="registerForm.username"
-                        placeholder="用户名"></el-input>
+        <el-tab-pane label="用户注册" name="register">
+          <el-form :model="registerForm" :rules="rules" ref="registerForm">
+            <el-form-item class="info" prop="username">
+              <el-input type="text" prefix-icon="el-icon-user" v-model="registerForm.username" placeholder="用户名"></el-input>
             </el-form-item>
-            <el-form-item class="info"
-                          prop="password">
-              <el-input type="password"
-                        prefix-icon="el-icon-lock"
-                        v-model="registerForm.password"
-                        placeholder="密码"></el-input>
+            <el-form-item class="info" prop="password">
+              <el-input type="password" prefix-icon="el-icon-lock" v-model="registerForm.password" placeholder="密码"></el-input>
             </el-form-item>
-            <el-form-item class="info"
-                          prop="phone">
-              <el-input type="text"
-                        prefix-icon="el-icon-mobile-phone"
-                        v-model="registerForm.phone"
-                        placeholder="手机号"></el-input>
+            <el-form-item class="info" prop="phone">
+              <el-input type="text" prefix-icon="el-icon-mobile-phone" v-model="registerForm.phone" placeholder="手机号"></el-input>
             </el-form-item>
             <el-form-item class="info">
-              <el-button type="primary"
-                         style=" width:100%;"
-                         @click="register('registerForm')"
-                         round>注册</el-button>
+              <el-button type="primary" style=" width:100%;" @click="register('registerForm')" round>注册</el-button>
             </el-form-item>
           </el-form>
         </el-tab-pane>

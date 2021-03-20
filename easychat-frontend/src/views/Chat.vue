@@ -10,14 +10,9 @@
   <div id="main">
     <el-container id="main-content">
       <el-aside style="width: 80px;">
-        <el-menu :default-active="activeIndex"
-                 class="left-menu"
-                 @select="handleSelect"
-                 background-color="#1d3e6d">
+        <el-menu :default-active="activeIndex" class="left-menu" @select="handleSelect" background-color="#1d3e6d">
           <div id="photo">
-            <el-avatar :size="60"
-                       :src="require('../assets/dog.jpeg')"
-                       style="margin: 10px"></el-avatar>
+            <el-avatar :size="60" :src="require('../assets/dog.jpeg')" style="margin: 10px"></el-avatar>
           </div>
           <el-menu-item index="1"> <i class="el-icon-s-comment"></i></el-menu-item>
           <el-menu-item index="2"> <i class="el-icon-user-solid"></i></el-menu-item>
@@ -26,61 +21,41 @@
       </el-aside>
 
       <el-aside>
-        <el-menu id="user-list"
-                 :default-active="1"
-                 class="main-menu"
-                 background-color="#e8e8e8">
+        <el-menu id="user-list" :default-active="1" class="main-menu" background-color="#e8e8e8">
           <div id="user-list-title"></div>
           <el-divider></el-divider>
           <el-menu-item index="1">
-            <el-avatar shape="square"
-                       :size="50"
-                       :src="require('../assets/cat.jpeg')"></el-avatar>
+            <el-avatar shape="square" :size="50" :src="require('../assets/cat.jpeg')"></el-avatar>
             <span class="chat-member">Danny Zeng</span>
           </el-menu-item>
           <el-menu-item index="2">
-            <el-avatar shape="square"
-                       :size="50"
-                       :src="require('../assets/pig.jpeg')"></el-avatar>
+            <el-avatar shape="square" :size="50" :src="require('../assets/pig.jpeg')"></el-avatar>
             <span class="chat-member">Eric Chen</span>
           </el-menu-item>
           <el-menu-item index="3">
-            <el-avatar shape="square"
-                       :size="50"
-                       :src="require('../assets/rabbit.jpeg')"></el-avatar>
+            <el-avatar shape="square" :size="50" :src="require('../assets/rabbit.jpeg')"></el-avatar>
             <span class="chat-member">Matthew Li</span>
           </el-menu-item>
         </el-menu>
       </el-aside>
 
       <el-container>
-        <el-header id="chat-title"
-                   height="60px"></el-header>
+        <el-header id="chat-title" height="60px"></el-header>
         <el-divider></el-divider>
         <el-main id="chat-content">
           <div id="content"></div>
         </el-main>
-        <el-footer id="tool-field"
-                   height="5%">
+        <el-footer id="tool-field" height="5%">
           <i class="el-icon-picture-outline"></i>
           <i class="el-icon-video-camera"></i>
           <i class="el-icon-folder-add"></i>
         </el-footer>
-        <el-footer id="input-field"
-                   height="20%">
-          <textarea id='input'
-                    style="width: 95%;height: 100% "
-                    v-model="input"></textarea>
+        <el-footer id="input-field" height="20%">
+          <textarea id='input' style="width: 95%;height: 100% " v-model="input"></textarea>
         </el-footer>
-        <el-footer id="send-msg"
-                   height="50px">
-          <el-button id="send-msg-btn"
-                     type="primary"
-                     @click="sendMsg"
-                     style="width: 12%">Send</el-button>
+        <el-footer id="send-msg" height="50px">
+          <el-button id="send-msg-btn" type="primary" @click="sendMsg" style="width: 12%">Send</el-button>
         </el-footer>
-        <div></div>
-        <div></div>
       </el-container>
     </el-container>
   </div>
