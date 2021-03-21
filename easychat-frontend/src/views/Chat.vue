@@ -87,6 +87,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Chat',
   data() {
@@ -107,8 +108,16 @@ export default {
     }else {
       this.chatHistory = JSON.parse(localStorage.getItem('chatHistory'))
     }
-
   },
+
+  watch: {
+    chatHistory() {
+      this.$nextTick(() => {
+        document.getElementById("content").scrollIntoView(false)
+      })
+    }
+  },
+
   sockets: {
     connect() {
 
@@ -164,7 +173,4 @@ export default {
   font-size: 200%;
   width: 40px;
 }
-
-
-
 </style>
