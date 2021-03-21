@@ -13,7 +13,6 @@ chat = (io) => {
   io.on('connection', socket => {
     console.log('user connected')
     count++
-    let user = `用户${count}`
 
     socket.on('login', (data) => {
       socket.username = data
@@ -33,7 +32,8 @@ chat = (io) => {
     socket.on('send_msg', (data) => {
       console.log(`收到客户端的消息：${data}`)
       io.sockets.emit('broadcast_msg', {
-        msg: data,
+        username: data.username,
+        input: data.input,
         time: new Date().toLocaleString()
       })
     })

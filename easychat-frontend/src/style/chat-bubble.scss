@@ -1,0 +1,115 @@
+.my-msg::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background-color: inherit;
+  left: -10px; /*向左侧外部延伸箭头box的一半宽度*/
+  position: absolute;
+  transform: rotate(45deg); /*旋转45度*/
+  top:50%; /*箭头在数值方向上居中*/
+  margin-top: -5px;
+}
+
+
+.message-box {
+  overflow: hidden;
+}
+.my.message .avatar {
+  float: right;
+}
+.other {
+  margin-bottom: 16px;
+  float: left;
+  width: 100%;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+
+.my {
+  margin-bottom: 16px;
+  float: right;
+  width: 100%;
+  text-align: right;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+.my.message .avatar {
+  float: right;
+}
+
+.message .content {
+  overflow: hidden;
+}
+
+.message .content .nickname {
+  font-weight: 400;
+  padding-left: 10px;
+  font-size: 12px;
+  height: 22px;
+  line-height: 24px;
+  color: #4f4f4f;
+  width: 350px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.message .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  float: left;
+  cursor: pointer;
+}
+
+.my.message .bubble {
+  background-color: #b2e281;
+}
+.message .bubble {
+  max-width: 500px;
+  min-height: 1em;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  text-align: left;
+  font-size: 14px;
+  border-radius: 3px;
+  margin: 0 10px;
+  background-color: #fff;
+}
+
+.message .bubble img {
+  display: inline-block;
+  cursor: pointer;
+  max-width: 350px;
+  max-height: 240px;
+}
+
+.other .bubble:before {
+  position: absolute;
+  top: 14px;
+  left: -10px;
+  border: 6px solid transparent;
+  content: ' ';
+  border-right-color: #fff;
+  border-right-width: 4px;
+}
+
+.my .bubble:before {
+  position: absolute;
+  top: 14px;
+  right: -10px;
+  border: 6px solid transparent;
+  content: ' ';
+  border-left-color: #b2e281;
+  border-left-width: 4px;
+}
+
+.bubble_cont {
+  word-wrap: break-word;
+  word-break: break-all;
+  min-height: 25px;
+  padding: 9px 13px;
+}

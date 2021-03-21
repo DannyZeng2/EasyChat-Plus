@@ -8,7 +8,7 @@
 -->
 <template>
   <div id="main">
-    <span id="user-info">当前用户: {{ this.$route.params.username }}</span>
+    <span id="user-info">当前用户: {{ this.currentUser }}</span>
     <el-container id="main-content">
       <el-aside style="width: 80px;">
         <el-menu :default-active="activeIndex" class="left-menu" @select="handleSelect" background-color="#1d3e6d">
@@ -22,7 +22,6 @@
       </el-aside>
 
       <el-aside>
-
         <div id="user-list" :default-active="1" class="main-menu">
           <div id="user-list-title">用户列表</div>
           <el-divider></el-divider>
@@ -39,7 +38,36 @@
         <el-header id="chat-title">群聊({{ this.count }})</el-header>
         <el-divider></el-divider>
         <el-main id="chat-content">
-          <div id="content"></div>
+          <div id="content">
+            <div v-for="(item) in chatHistory" :key = "item">
+              <div v-if="typeof item === 'string'">
+                <div style='text-align:center;color:grey'>{{item}}</div>
+              </div>
+              <div class="my-msg" v-else-if="item.username === currentUser">
+                <div class="message-box">
+                  <div class="my message">
+                    <img class="avatar" src="../assets/dog.jpeg" alt="" />
+                    <div class="content">
+                      <div class="bubble"><div class="bubble_cont">{{item.input}}</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div v-else class="other-users-msg">
+                <div class="message-box">
+                  <div class="other message">
+                    <img class="avatar" src="../assets/dog.jpeg" alt="" />
+                    <div class="content">
+                      <div class="nickname">{{item.username}}</div>
+                      <div class="bubble"><div class="bubble_cont">{{item.input}}</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </el-main>
         <el-footer id="tool-field" height="5%">
           <i class="el-icon-picture-outline"></i>
@@ -57,9 +85,8 @@
     </el-container>
   </div>
 </template>
+
 <script>
-
-
 export default {
   name: 'Chat',
   data() {
@@ -69,8 +96,9 @@ export default {
       message: '',
       count:0,
       activeIndex: 1,
-      userList:[
-      ],
+      userList:[],
+      chatHistory:[],
+      currentUser:this.$route.params.username
     }
   },
   sockets: {
@@ -90,35 +118,30 @@ export default {
     },
 
     user_enter(data) {
-      console.log('-----------------------')
-      let content = document.querySelector('#content');
-      let div = document.createElement('div');
-      div.innerText = data
-      content.appendChild(div)
+      this.chatHistory.push(data)
     },
     user_leave(data){
-      console.log(data)
-      let content = document.querySelector('#content');
-      let div = document.createElement('div');
-      div.innerText = data
-      content.appendChild(div)
+      this.chatHistory.push(data)
     },
     count_users(data) {
       this.count = data.length
       this.userList = data
     },
     broadcast_msg(data) {
-      console.log(data)
-      let content = document.querySelector('#content');
-      let div = document.createElement('div');
-      div.innerText = `${data.msg} ---${data.time}`
-      content.appendChild(div)
+      this.chatHistory.push(data)
+      console.log(this.chatHistory)
     }
   },
 
   methods: {
     sendMsg() {
-      this.$socket.emit('send_msg',this.$route.params.username + ':' + this.input)
+      if(this.input.trim() === '') {
+        return
+      }
+      this.$socket.emit('send_msg', {
+        username: this.currentUser,
+        input: this.input.trim()
+      })
       this.input = ''
     }
   }
@@ -128,6 +151,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import "../style/chat.scss";
+@import "../style/chat-bubble.scss";
 
 .el-icon-s-comment,
 .el-icon-user-solid,
@@ -135,5 +159,7 @@ export default {
   font-size: 200%;
   width: 40px;
 }
+
+
 
 </style>

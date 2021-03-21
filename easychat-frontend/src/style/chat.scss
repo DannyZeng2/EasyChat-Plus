@@ -23,6 +23,15 @@
   margin-top: 4%;
 
 }
+.el-main {
+  display: block;
+  flex: 1;
+  flex-basis: auto;
+  overflow: auto;
+  box-sizing: border-box;
+  padding: 5px 20px 0;
+}
+
 
 .left-menu {
   height:100%;
