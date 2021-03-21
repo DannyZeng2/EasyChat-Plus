@@ -27,7 +27,7 @@
           <el-divider></el-divider>
           <table border-spacing=0>
           <tr v-for="(item) in userList" :key = "item" class="user-detail" >
-            <td style="width: 60px;padding: 0 5px 0 5px;"><el-avatar shape="square" :size="50" :src="require('../assets/pig.jpeg')" ></el-avatar></td>
+            <td style="width: 60px;padding: 0 5px 0 5px;"><el-avatar shape="square" :size="50" :src="require('../assets/dog.jpeg')" ></el-avatar></td>
             <td><div class="chat-member">{{ item }}</div></td>
           </tr>
           </table>
@@ -101,27 +101,31 @@ export default {
       currentUser:this.$route.params.username
     }
   },
+  mounted() {
+    if(localStorage.getItem('chatHistory') ===null) {
+      localStorage.setItem('chatHistory','')
+    }else {
+      this.chatHistory = JSON.parse(localStorage.getItem('chatHistory'))
+    }
+
+  },
   sockets: {
     connect() {
-      this.$message({
-        message: '连接成功！！！',
-        type: 'success'
-      });
 
     },
 
     disconnect() {
-      this.$message({
-        message: '连接断开！！！',
-        type: 'error'
-      })
+
     },
 
     user_enter(data) {
       this.chatHistory.push(data)
+      localStorage.setItem('chatHistory',JSON.stringify(this.chatHistory))
     },
     user_leave(data){
       this.chatHistory.push(data)
+      localStorage.setItem('chatHistory',JSON.stringify(this.chatHistory))
+
     },
     count_users(data) {
       this.count = data.length
@@ -130,6 +134,7 @@ export default {
     broadcast_msg(data) {
       this.chatHistory.push(data)
       console.log(this.chatHistory)
+      localStorage.setItem('chatHistory',JSON.stringify(this.chatHistory))
     }
   },
 
