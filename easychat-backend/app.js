@@ -32,5 +32,7 @@ app.use('/', indexRouter);
 
 
 
-server.listen('3000');
+server.listen('3000',() =>{
+  console.log('正在监听port:3000...')
+});
 

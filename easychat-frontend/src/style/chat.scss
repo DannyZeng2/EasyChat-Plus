@@ -30,6 +30,7 @@
 
 .main-menu{
   height:100%;
+  background: #e8e8e8;
 }
 
 #user-list-title{
@@ -85,7 +86,6 @@ textarea{
 }
 
 .chat-member{
-  margin-left: 20px;
   font-size: 18px;
 }
 #user-list .el-menu-item.is-active{
@@ -99,3 +99,20 @@ textarea{
   color: white;
   font-weight: bold;
 }
+table{
+  width: 100%;
+  border-spacing:0px;
+}
+
+.user-detail{
+  width: 100%;
+}
+.user-detail:hover{
+  background: #d1d1d1;
+;
+}
+
+td {
+  border-bottom: #e2e1e1 2px solid
+}
+
