@@ -41,7 +41,7 @@
           <div id="content">
             <div v-for="(item) in chatHistory" :key = "item">
               <div v-if="typeof item === 'string'">
-                <div style='text-align:center;color:grey'>{{item}}</div>
+                <div style='text-align:center;color:grey;margin-bottom: 20px'>{{item}}</div>
               </div>
               <div class="my-msg" v-else-if="item.username === currentUser">
                 <div class="message-box">
@@ -70,6 +70,13 @@
           </div>
         </el-main>
         <el-footer id="tool-field" height="5%">
+          <el-popover placement="top-start" width="300" trigger="click" class="emoBox">
+            <div class="emotionList">
+              <a href="javascript:void(0);" @click="getEmo(index)" v-for="(item,index) in faceList" :key="index" class="emotionItem">{{item}}</a>
+            </div>
+            <i class="el-icon-emoji"  slot="reference"></i>
+          </el-popover>
+
           <i class="el-icon-picture-outline"></i>
           <i class="el-icon-video-camera"></i>
           <i class="el-icon-folder-add">
@@ -87,7 +94,7 @@
 </template>
 
 <script>
-
+const appData = require("../static/emoji.json");
 export default {
   name: 'Chat',
   data() {
@@ -99,6 +106,7 @@ export default {
       activeIndex: 1,
       userList:[],
       chatHistory:[],
+      faceList: [],
       currentUser:this.$route.params.username
     }
   },
@@ -107,6 +115,9 @@ export default {
       localStorage.setItem('chatHistory','')
     }else {
       this.chatHistory = JSON.parse(localStorage.getItem('chatHistory'))
+    }
+    for(let i in appData){
+      this.faceList.push(appData[i].char);
     }
   },
 
@@ -149,15 +160,26 @@ export default {
 
   methods: {
     sendMsg() {
+
       if(this.input.trim() === '') {
         return
       }
+      console.log(this.input)
       this.$socket.emit('send_msg', {
         username: this.currentUser,
         input: this.input.trim()
       })
+
       this.input = ''
-    }
+    },
+    getEmo(index){
+      let selectionStart = document.getElementById('input').selectionStart;
+      let start = this.input.substring(0,selectionStart)
+      let end = this.input.substring(selectionStart+1)
+      let emoji = this.faceList[index]
+
+      this.input = start +emoji +end
+    },
   }
 }
 </script>
@@ -173,4 +195,5 @@ export default {
   font-size: 200%;
   width: 40px;
 }
+
 </style>

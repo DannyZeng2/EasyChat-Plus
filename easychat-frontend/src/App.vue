@@ -30,4 +30,10 @@ body {
   display: block;
   margin: 0px;
 }
+.el-popover{
+  height:200px;
+  width:400px;
+  overflow: scroll;
+  overflow-x:auto;
+}
 </style>

@@ -60,9 +60,24 @@
   background: #f6f6f6;
 }
 
-.el-icon-picture-outline,.el-icon-video-camera,.el-icon-folder-add{
-  font-size:200%;
+.el-icon-picture-outline,.el-icon-video-camera,.el-icon-folder-add,.el-icon-picture-outline-round{
+  margin-left: 5px;
+  font-size:225%;
   margin: 5px;
+  cursor:pointer
+}
+
+.el-icon-emoji{
+  width: 5%;
+  height: 90%;
+  line-height:48px;
+  background: url("../assets/emoji.png") center no-repeat;
+  cursor:pointer
+}
+.el-icon-emoji:before{
+  content: "\e75e";
+  font-size: 14px;
+  visibility: hidden;
 }
 #send-msg{
   text-align: right;
@@ -124,4 +139,37 @@ table{
 td {
   border-bottom: #e2e1e1 2px solid
 }
-
+chatIcon {
+  padding: 0 10px;
+  font-size: 25px;
+}
+.emotionList{
+  display: flex;
+  flex-wrap: wrap;
+  padding:5px;
+}
+.emotionItem{
+  width:10%;
+  font-size:20px;
+  text-align:center;
+}
+/*包含以下四种的链接*/
+.emotionItem {
+  text-decoration: none;
+}
+/*正常的未被访问过的链接*/
+.emotionItem:link {
+  text-decoration: none;
+}
+/*已经访问过的链接*/
+.emotionItem:visited {
+  text-decoration: none;
+}
+/*鼠标划过(停留)的链接*/
+.emotionItem:hover {
+  text-decoration: none;
+}
+/* 正在点击的链接*/
+.emotionItem:active {
+  text-decoration: none;
+}
