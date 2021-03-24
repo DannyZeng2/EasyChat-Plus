@@ -45,6 +45,14 @@ chat = (io) => {
       io.sockets.emit('user_leave', `${socket.username}离开了群聊`)
       io.sockets.emit('count_users', users)
     });
+
+    // 处理图片请求
+    socket.on('sendImage', data => {
+      // 直接广播给所有人
+      console.log('----------------------receiveImage---------------------')
+      console.log(data)
+      io.sockets.emit('receiveImage', data)
+    })
   });
 }
 

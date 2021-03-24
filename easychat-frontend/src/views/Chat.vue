@@ -72,12 +72,12 @@
         <el-footer id="tool-field" height="5%">
           <el-popover placement="top-start" width="300" trigger="click" class="emoBox">
             <div class="emotionList">
-              <a href="javascript:void(0);" @click="getEmo(index)" v-for="(item,index) in faceList" :key="index" class="emotionItem">{{item}}</a>
+              <a href="javascript:void(0);" @click="getEmoji(index)" v-for="(item,index) in faceList" :key="index" class="emotionItem">{{item}}</a>
             </div>
             <i class="el-icon-emoji"  slot="reference"></i>
           </el-popover>
-
-          <i class="el-icon-picture-outline"></i>
+          <label class="el-icon-picture-outline" for="file"></label>
+          <input id="file" type="file" style="display: none;" @change="handleFile"/>
           <i class="el-icon-video-camera"></i>
           <i class="el-icon-folder-add">
           </i>
@@ -155,6 +155,54 @@ export default {
       this.chatHistory.push(data)
       console.log(this.chatHistory)
       localStorage.setItem('chatHistory',JSON.stringify(this.chatHistory))
+    },
+//
+// <div className="message-box">
+//   <div className="other message">
+//     <img className="avatar" src="../assets/dog.jpeg" alt=""/>
+//     <div className="content">
+//       <div className="nickname">{{item.username}}</div>
+//       <div className="bubble">
+//         <div className="bubble_cont">{{item.input}}</div>
+//       </div>
+//     </div>
+//   </div>
+// </div>
+    receiveImage(data) {
+      console.log('-------------image------------')
+      let div = document.createElement("div");
+      if(data.username === this.currentUser) {
+        div.innerHTML =`
+          <div class="message-box">
+            <div class="my message">
+              <img src="/img/dog.a1534186.jpeg" alt="" class="avatar">
+              <div class="content">
+                <div class="bubble" style="background-color: white !important;border-right-color: #fff !important;;">
+                <img src="${data.img}">
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      }else{
+        div.innerHTML =`
+          <div class="message-box">
+            <div class="other message">
+             <img src="/img/dog.a1534186.jpeg" alt="" class="avatar">
+              <div class="content">
+                <div class="nickname">${data.username}</div>
+                <div class="bubble">
+                  <div class="bubble_cont">
+                    <img src="${data.img}">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      }
+
+      document.getElementById("content").append(div)
     }
   },
 
@@ -172,13 +220,26 @@ export default {
 
       this.input = ''
     },
-    getEmo(index){
+    getEmoji(index){
       let selectionStart = document.getElementById('input').selectionStart;
       let start = this.input.substring(0,selectionStart)
       let end = this.input.substring(selectionStart+1)
       let emoji = this.faceList[index]
 
       this.input = start +emoji +end
+    },
+    handleFile(e) {
+      const file = e.target.files[0]
+      const reader = new FileReader() // 创建读取文件对象
+      reader.readAsDataURL(file) // 发起异步请求，读取文件
+      reader.onload = () => {
+        // 文件读取完成后
+        // 读取完成后，将结果赋值给img的src
+        this.$socket.emit('sendImage', {
+          username: this.currentUser,
+          img: reader.result
+        })
+      }
     },
   }
 }
